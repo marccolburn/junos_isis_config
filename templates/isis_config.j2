@@ -1,0 +1,9 @@
+{% for interface in isis_interfaces %}
+set interfaces {{ interface.name }} unit {{ interface.unit }} family iso
+set protocols isis interface {{ interface.name }}.{{ interface.unit }}
+{% endfor %}
+set interfaces lo0 unit {{ isis_settings.loopback_unit }} family iso address {{ isis_settings.loopback_clns_address }}
+set protocols isis interface lo0.{{ isis_settings.loopback_unit }} passive
+{% if isis_settings.level1_disable == True %}
+set protocols isis level 1 disable
+{% endif %}

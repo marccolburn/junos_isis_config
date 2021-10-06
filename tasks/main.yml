@@ -1,0 +1,10 @@
+---
+- name: Generate Debug
+  template:
+    src: "isis_config.j2"
+    dest: "debug_configs/{{ inventory_hostname}}_isis_config.txt"
+
+- name: Generate ISIS Configuration
+  junos_config:
+    lines: "{{ lookup('template', 'isis_config.j2').split('\n') }}"
+    comment: "Configured ISIS"
