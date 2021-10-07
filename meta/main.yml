@@ -1,6 +1,6 @@
 galaxy_info:
   author: Marc Colburn
-  description: Configure Basic ISIS
+  description: Configure Basic IS-IS
   company: Juniper
   license: BSD-3-Clause
   min_ansible_version: 2.9
