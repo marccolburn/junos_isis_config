@@ -1,0 +1,13 @@
+{% for interface in isis_interfaces %}
+delete interfaces {{ interface.name }} unit {{ interface.unit }} family iso
+delete protocols isis interface {{ interface.name }}.{{ interface.unit }}
+{% if interface.metric is defined %}
+delete protocols isis interface {{ interface.name }}.{{ interface.unit }} level {{ interface.level }} metric {{ interface.metric }}
+{% endif %}
+
+{% endfor %}
+delete interfaces lo0 unit {{ isis_settings.loopback_unit }} family iso address {{ isis_settings.loopback_clns_address }}
+delete protocols isis interface lo0.{{ isis_settings.loopback_unit }} passive
+{% if isis_settings.level1_disable == True %}
+delete protocols isis level 1 disable
+{% endif %}

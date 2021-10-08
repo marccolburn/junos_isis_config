@@ -8,3 +8,10 @@
   junos_config:
     lines: "{{ lookup('template', 'isis_config.j2').split('\n') }}"
     comment: "Configured ISIS"
+  when: isis_remove == "no"
+
+- name: Remove ISIS Configuration
+  junos_config:
+    lines: "{{ lookup('template', 'isis_remove.j2').split('\n') }}"
+    comment: "Removed ISIS"
+  when: isis_remove == "yes"
