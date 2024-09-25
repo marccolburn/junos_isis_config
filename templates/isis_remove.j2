@@ -14,3 +14,6 @@ delete protocols isis interface lo0.{{ isis_settings.loopback_unit }} passive
 {% if isis_settings.level1_disable == True %}
 delete protocols isis level 1 disable
 {% endif %}
+{% if isis_wide_metrics == True %}
+delete protocols isis level 2 wide-metrics-only
+{% endif %}
