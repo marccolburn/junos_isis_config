@@ -1,13 +1,6 @@
 {% for interface in isis_interfaces %}
 delete interfaces {{ interface.name }} unit {{ interface.unit }} family iso
 delete protocols isis interface {{ interface.name }}.{{ interface.unit }}
-{% if interface.metric is defined %}
-delete protocols isis interface {{ interface.name }}.{{ interface.unit }} level {{ interface.level }} metric {{ interface.metric }}
-{% endif %}
-{% if interface.type == 'p2p' %}
-delete protocols isis interface {{ interface.name }}.{{ interface.unit }} point-to-point
-{% endif %}
-
 {% endfor %}
 delete interfaces lo0 unit {{ isis_settings.loopback_unit }} family iso address {{ isis_settings.loopback_clns_address }}
 delete protocols isis interface lo0.{{ isis_settings.loopback_unit }} passive
