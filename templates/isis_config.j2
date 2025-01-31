@@ -17,3 +17,6 @@ set protocols isis level 1 disable
 {% if isis_wide_metrics == True %}
 set protocols isis level 2 wide-metrics-only
 {% endif %}
+{% if isis_settings.reference_bandwidth is defined %}
+set protocols isis reference-bandwidth {{ isis_settings.reference_bandwidth }}
+{% endif %}

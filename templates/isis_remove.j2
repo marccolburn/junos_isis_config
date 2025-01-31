@@ -10,3 +10,6 @@ delete protocols isis level 1 disable
 {% if isis_wide_metrics == True %}
 delete protocols isis level 2 wide-metrics-only
 {% endif %}
+{% if isis_settings.reference_bandwidth is defined %}
+delete protocols isis reference-bandwidth {{ isis_settings.reference_bandwidth }}
+{% endif %}
